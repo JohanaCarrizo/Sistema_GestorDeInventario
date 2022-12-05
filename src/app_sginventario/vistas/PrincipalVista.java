@@ -6,6 +6,7 @@
 package app_sginventario.vistas;
 
 import app_sginventario.controlador.EmpleadoControlador;
+import app_sginventario.controlador.EquipoControlador;
 import app_sginventario.controlador.LoginControlador;
 import app_sginventario.controlador.PrincipalControlador;
 
@@ -84,6 +85,11 @@ public class PrincipalVista extends javax.swing.JFrame {
         jMenu2.setText("Equipos");
 
         MenuItemGestionEquipo.setText("Gestionar equipos");
+        MenuItemGestionEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemGestionEquipoActionPerformed(evt);
+            }
+        });
         jMenu2.add(MenuItemGestionEquipo);
 
         jMenuBar1.add(jMenu2);
@@ -140,6 +146,12 @@ public class PrincipalVista extends javax.swing.JFrame {
         PrincipalControlador.ocultar();
         EmpleadoControlador.mostrar();
     }//GEN-LAST:event_MenuItemGestionaEmpleadosActionPerformed
+
+    private void MenuItemGestionEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemGestionEquipoActionPerformed
+        
+        PrincipalControlador.ocultar();
+        EquipoControlador.mostrar();
+    }//GEN-LAST:event_MenuItemGestionEquipoActionPerformed
 
     
 

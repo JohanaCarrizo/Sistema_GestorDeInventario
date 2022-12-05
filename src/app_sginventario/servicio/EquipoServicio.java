@@ -26,6 +26,13 @@ public class EquipoServicio extends DAO{
         }else{ return false; }
     }
     
+    public List listarEquipos(){
+    
+        conectar();
+        List<Equipo> lista = em.createQuery("SELECT e FROM Equipo e").getResultList();
+        desconectar();
+        return lista;
+    }
     
     public void asignarEquipoConComponente(int id){
     
@@ -53,4 +60,5 @@ public class EquipoServicio extends DAO{
         desconectar();
         return equipo;
     }
+    
 }
