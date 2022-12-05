@@ -10,6 +10,7 @@ public enum Categoria {
     procesador,
     fuente,
     placa_madre,
-    placa_video
+    placa_video,
+    software
     
 }

@@ -1,7 +1,9 @@
 package app_sginventario.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -38,18 +40,20 @@ public class Componente implements Serializable {
     private Equipo equipo;
     
     
+    public Componente() {
     
+        this.fecha_adquisicion = new Date();
+        this.estado = EstadoComponente.EN_ALMACEN;
+    }
 
-    public Componente() {}
-
-    public Componente(int id, String descripcion, String garantia, String marca, Date fecha_adquisicion, Categoria categoria, EstadoComponente estado, Equipo equipo) {
-        this.id = id;
+    public Componente(String descripcion, String garantia, String marca, Categoria categoria, Equipo equipo) {
+       
         this.descripcion = descripcion;
         this.garantia = garantia;
         this.marca = marca;
-        this.fecha_adquisicion = fecha_adquisicion;
+        this.fecha_adquisicion = new Date();
         this.categoria = categoria;
-        this.estado = estado;
+        this.estado = EstadoComponente.EN_ALMACEN;
         this.equipo = equipo;
     }
 

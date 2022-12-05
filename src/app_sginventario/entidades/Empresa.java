@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-@Entity
+//@Entity
 public class Empresa implements Serializable {
     
     @Id
@@ -22,8 +22,8 @@ public class Empresa implements Serializable {
     private String direccion;
     private String telefono;
     
-    @OneToMany(mappedBy = "empresa")
-    private List<Equipo> equipos;
+    /*@OneToMany(mappedBy = "empresa")
+    private List<Equipo> equipos;*/
     
     //@OneToMany(mappedBy = "depto")
     //private List<Departamento> departamentos;
@@ -35,10 +35,10 @@ public class Empresa implements Serializable {
         this.telefono = "4368579";*/
     }
 
-    public Empresa(List<Equipo> equipos) {
+    /*public Empresa(List<Equipo> equipos) {
         this.equipos = equipos;
         //this.departamentos = departamentos;
-    }    
+    }   */ 
     
     public int getId() {
         return id;
@@ -80,13 +80,13 @@ public class Empresa implements Serializable {
         this.telefono = telefono;
     }
 
-    public List<Equipo> getEquipos() {
+    /*public List<Equipo> getEquipos() {
         return equipos;
     }
 
     public void setEquipos(List<Equipo> equipos) {
         this.equipos = equipos;
-    }
+    }*/
 
     /*public List<Departamento> getDepartamentos() {
         return departamentos;

@@ -5,16 +5,20 @@
  */
 package app_sginventario.vistas;
 
+import app_sginventario.controlador.EmpleadoControlador;
+import app_sginventario.controlador.LoginControlador;
+import app_sginventario.controlador.PrincipalControlador;
+
 /**
  *
  * @author Johana
  */
-public class PincipalVista extends javax.swing.JFrame {
+public class PrincipalVista extends javax.swing.JFrame {
 
     /**
      * Creates new form PincipalVista
      */
-    public PincipalVista() {
+    public PrincipalVista() {
         initComponents();
     }
 
@@ -28,36 +32,67 @@ public class PincipalVista extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        MenuItemGestionaEmpleados = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        MenuItemGestionEquipo = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        MenuItemGestionComp = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
+        MenuItemCerrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        jLabel1.setText("BIENVENIDO");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 890, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(318, 318, 318)
+                .addComponent(jLabel1)
+                .addContainerGap(327, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(209, 209, 209)
+                .addComponent(jLabel1)
+                .addContainerGap(268, Short.MAX_VALUE))
         );
 
         jMenuBar1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         jMenu1.setText("Empleados");
+
+        MenuItemGestionaEmpleados.setText("Gestionar empleados");
+        MenuItemGestionaEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemGestionaEmpleadosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MenuItemGestionaEmpleados);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Equipos");
+
+        MenuItemGestionEquipo.setText("Gestionar equipos");
+        jMenu2.add(MenuItemGestionEquipo);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Componentes");
+
+        MenuItemGestionComp.setText("Gestionar componentes");
+        jMenu3.add(MenuItemGestionComp);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Proveedores");
@@ -67,6 +102,15 @@ public class PincipalVista extends javax.swing.JFrame {
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("Salir");
+
+        MenuItemCerrar.setText("Cerrar sesión");
+        MenuItemCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemCerrarActionPerformed(evt);
+            }
+        });
+        jMenu6.add(MenuItemCerrar);
+
         jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
@@ -85,42 +129,26 @@ public class PincipalVista extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PincipalVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PincipalVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PincipalVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PincipalVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void MenuItemCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemCerrarActionPerformed
+       
+        PrincipalControlador.ocultar();
+        LoginControlador.mostrar();
+    }//GEN-LAST:event_MenuItemCerrarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PincipalVista().setVisible(true);
-            }
-        });
-    }
+    private void MenuItemGestionaEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemGestionaEmpleadosActionPerformed
+        
+        PrincipalControlador.ocultar();
+        EmpleadoControlador.mostrar();
+    }//GEN-LAST:event_MenuItemGestionaEmpleadosActionPerformed
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MenuItemCerrar;
+    private javax.swing.JMenuItem MenuItemGestionComp;
+    private javax.swing.JMenuItem MenuItemGestionEquipo;
+    private javax.swing.JMenuItem MenuItemGestionaEmpleados;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

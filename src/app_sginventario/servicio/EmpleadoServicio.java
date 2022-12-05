@@ -6,12 +6,15 @@ import app_sginventario.entidades.Rol;
 import app_sginventario.entidades.TipoDepartamento;
 import app_sginventario.entidades.Usuario;
 import app_sginventario.persistencia.DAO;
+import java.util.List;
 
 public class EmpleadoServicio extends DAO {
     
-    UsuarioServicio userServ = new UsuarioServicio();
+    private UsuarioServicio userServ = new UsuarioServicio();
     
-    public void guardarEmpleado(String nombre, String apellido, String domicilio, String telefono, Rol rol, TipoDepartamento depto, Usuario usuario, Empresa empresa){
+    
+    
+    public void guardarEmpleado(String nombre, String apellido, String domicilio, String telefono, Rol rol, TipoDepartamento depto, Usuario usuario){
     
         Empleado emp = new Empleado();
         
@@ -22,7 +25,6 @@ public class EmpleadoServicio extends DAO {
         emp.setRol(rol);
         emp.setDepto(depto);
         emp.setUsuario(usuario);
-        emp.setEmpresa(empresa);
         
         super.guardar(emp);
     
@@ -47,25 +49,63 @@ public class EmpleadoServicio extends DAO {
         
     }
     
-    public void guardarEmpresa(){
-        
-        Empresa em = new Empresa();
-        em.setNombre("CorporacionUmbrella");
-        em.setCUIT("12-25998668-4");
-        em.setDireccion("Av.Siempre viva");
-        em.setTelefono("452968548");
-        
-        super.guardar(em);
+    public Empleado buscarEmpleadoPorUsuario(Usuario usuario){
     
+        List<Empleado> lista = listarEmpleados();
+        for (Empleado empleado : lista) {
+            
+            if(empleado.getUsuario().getId() == usuario.getId()){
+            
+                return empleado;
+            }            
+        }       
+        return null;
     }
     
-    public Empresa buscarEmpresa(){
+    public List listarEmpleados(){
     
         conectar();
-        Empresa emp = em.find(Empresa.class, 1);
+        List<Empleado> lista = em.createQuery("SELECT e FROM Empleado e").getResultList();
         desconectar();
-        return emp;
-    
+        return lista;
     }
     
+    public Rol[] listarRoles(){
+    
+        return Rol.values();
+        
+    }
+    
+    public Rol retornarRolSeleccionado(String rolSelect){
+    
+        Rol[] listaR = listarRoles();
+        for (int i = 0; i < listaR.length; i++) {
+            
+            if(listaR[i].name().equals(rolSelect) ){
+            
+                return listaR[i];
+            }      
+        }
+        
+        return null;
+    }
+    
+    public TipoDepartamento[] listarDepartamentos(){
+    
+        return TipoDepartamento.values();
+    }
+    
+    public TipoDepartamento retornarDepaSeleccionado(String depaSelect){
+    
+        TipoDepartamento[] listaD = listarDepartamentos();
+        for (int i = 0; i < listaD.length; i++) {
+            
+            if(listaD[i].name().equals(depaSelect) ){
+            
+                return listaD[i];
+            }      
+        }
+        
+        return null;
+    }
 }

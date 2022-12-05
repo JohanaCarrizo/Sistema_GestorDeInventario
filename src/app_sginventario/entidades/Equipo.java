@@ -34,16 +34,17 @@ public class Equipo implements Serializable {
     @Enumerated(EnumType.STRING)
     private TipoDepartamento depto;
     
-    @ManyToOne
-    private Empresa empresa;
+    /*@ManyToOne
+    private Empresa empresa;*/
 
     public Equipo() {}
 
-    public Equipo(String nombre, List<HistorialDeCambio> historiales, TipoDepartamento depto) {
+    public Equipo(String nombre, List<HistorialDeCambio> historiales, TipoDepartamento depto, List<Componente> componentes) {
         
         this.nombre = nombre;
         this.historiales = historiales;
         this.depto = depto;
+        this.componentes = componentes;
     }
 
     public int getId() {
@@ -77,7 +78,57 @@ public class Equipo implements Serializable {
     public void setDepto(TipoDepartamento depto) {
         this.depto = depto;
     }
+
+    public List<Componente> getComponentes() {
+        return componentes;
+    }
+
+    public void setComponentes(List<Componente> componentes) {
+        
+         this.componentes = componentes;
+        
+    }
+
+    /*public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }*/
     
+    public boolean validarCantComponentes(List<Componente> componentes){
     
+        return validarComponenteUnico(componentes) && componentes.size() >= 9;      
+        
+    }   
     
+    public boolean validarComponenteUnico(List<Componente> componentes){
+    
+        int indice = 0;
+        int bandera = 0;
+        Categoria categorias[] = Categoria.values();
+        int[] listaAux = new int[categorias.length];
+        
+        for (int i = 0; i < categorias.length; i++) {
+            
+            listaAux[i] = 0;          
+        }
+        
+        for (Componente compo : componentes) {
+            
+            indice = compo.getCategoria().ordinal();
+            listaAux[indice]++;
+        }
+        
+        for (int i : listaAux) {
+            
+            if(i != 1){
+            
+                bandera++;
+            
+            }
+        }
+        return bandera == 0;
+    }
 }
