@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,13 +28,17 @@ public class HistorialDeCambio implements Serializable {
     
     @ManyToOne
     private Equipo equipo;
+    
+    @Enumerated(EnumType.STRING)
+    private TipoDeCambio tipoCambio;
 
     public HistorialDeCambio() {}
 
-    public HistorialDeCambio(String descripcion, Date fecha_cambio, Equipo equipo) {
+    public HistorialDeCambio(String descripcion, TipoDeCambio tipoCambio,Equipo equipo) {
        
         this.descripcion = descripcion;
-        this.fecha_cambio = fecha_cambio;
+        this.fecha_cambio = new Date();
+        this.tipoCambio = tipoCambio;
         this.equipo = equipo;
     }
 
@@ -68,8 +74,12 @@ public class HistorialDeCambio implements Serializable {
         this.equipo = equipo;
     }
 
-    
-    
-    
+    public TipoDeCambio getTipoCambio() {
+        return tipoCambio;
+    }
+
+    public void setTipoCambio(TipoDeCambio tipoCambio) {
+        this.tipoCambio = tipoCambio;
+    }
     
 }

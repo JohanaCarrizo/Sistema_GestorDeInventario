@@ -33,13 +33,13 @@ public class Empleado implements Serializable {
     //@ManyToOne
     //private Departamento depto;
     
-    @OneToOne
-    private Empresa empresa;
+    /*@OneToOne
+    private Empresa empresa;*/
 
     public Empleado() {
     }
 
-    public Empleado(String nombre, String apellido, String domicilio, String telefono, Rol rol, TipoDepartamento depto, Usuario usuario, Empresa empresa) {
+    public Empleado(String nombre, String apellido, String domicilio, String telefono, Rol rol, TipoDepartamento depto, Usuario usuario) {
         
         this.nombre = nombre;
         this.apellido = apellido;
@@ -48,7 +48,6 @@ public class Empleado implements Serializable {
         this.rol = rol;
         this.depto = depto;
         this.usuario = usuario;
-        this.empresa = empresa;
     }
 
     public TipoDepartamento getDepto() {
@@ -116,13 +115,6 @@ public class Empleado implements Serializable {
         this.usuario = usuario;
     }
 
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
     
     
     
