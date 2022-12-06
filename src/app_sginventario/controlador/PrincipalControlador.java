@@ -11,4 +11,6 @@ public class PrincipalControlador extends JFrame{
     
     public static void ocultar(){ principalView.setVisible(false); }
     
+    
+    
 }

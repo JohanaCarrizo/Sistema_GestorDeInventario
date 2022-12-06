@@ -63,19 +63,6 @@ public class ComponenteServicio extends DAO{
         return null;
     }
     
-    public Categoria retornarCategoriaInt(int valor){
-    
-        Categoria[] listaC = listarCategorias();
-        for (int i = 0; i < listaC.length; i++) {
-            
-            if(listaC[i].ordinal() == valor ){
-            
-                return listaC[i];
-            }      
-        }        
-        return null;
-    }
-    
     public List filtrarPorCategoria(Categoria nomCategoria){
     
         conectar();
@@ -87,15 +74,22 @@ public class ComponenteServicio extends DAO{
         return lista;
     }
     
-    public List filtrarPorCategoriaString(String categoria){
+    public List filtrarEntre(){
     
         conectar();
         em.getTransaction().begin();
-        List<Componente> lista = em.createQuery("SELECT c FROM Componente c WHERE c.categoria LIKE :categoria")
-                                                      .setParameter("categoria", categoria)
-                                                      .getResultList();
+        List<Componente> lista = em.createQuery("SELECT c FROM Componente c WHERE c.id BETWEEN 10 AND 58").getResultList();
         desconectar();
         return lista;
+    }
+    
+    public Componente buscarComponente(int id){
+    
+        conectar();
+        em.getTransaction().begin();
+        Componente c = em.find(Componente.class, id);
+        desconectar();
+        return c;
     }
     
 }

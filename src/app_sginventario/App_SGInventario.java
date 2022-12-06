@@ -5,6 +5,7 @@ import app_sginventario.entidades.Categoria;
 import app_sginventario.entidades.Componente;
 import app_sginventario.entidades.Empleado;
 import app_sginventario.entidades.Empresa;
+import app_sginventario.entidades.Equipo;
 import app_sginventario.entidades.EstadoComponente;
 import app_sginventario.entidades.HistorialDeCambio;
 import app_sginventario.entidades.Rol;
@@ -33,14 +34,18 @@ public class App_SGInventario {
         
         LoginControlador.mostrar();
         
-        /*Categoria cat = compoService.retornarCategoria("memoria_ram");
-        List<Componente> lista = compoService.filtrarPorCategoria(cat);
         
-        for (Componente componente : lista) {
-            
-            System.out.println(componente);
-            
-        }*/
+//        List<Componente> lista = compoService.filtrarPorCategoria(Categoria.monitor);
+        
+        
+        /*Categoria cat = compoService.retornarCategoria("memoria_ram");
+        List<Componente> lista = compoService.filtrarPorCategoria(cat);*/
+        
+//        for (Componente componente : lista) {
+//            
+//            System.out.println(componente);
+//            
+//        }
         
         //userServ.guardarUsuario("Lmessi", "1234");
         
@@ -167,7 +172,17 @@ public class App_SGInventario {
         /*proveedorService.guardarProveedor("CompraGamer");
         proveedorService.guardarProveedor("Microsoft");
         proveedorService.guardarProveedor("Elit");
-        proveedorService.guardarProveedor("Meximus");*/
+        proveedorService.guardarProveedor("Meximus");
+        
+        proveedorService.guardarProveedor("Venex");
+        proveedorService.guardarProveedor("Linux");
+        proveedorService.guardarProveedor("Mercado Libre");
+        proveedorService.guardarProveedor("Samsung");
+        proveedorService.guardarProveedor("Noga");
+        proveedorService.guardarProveedor("Redragon");
+        proveedorService.guardarProveedor("Asus");
+        proveedorService.guardarProveedor("Alberto Perez SA");
+        proveedorService.guardarProveedor("Delider Informatica");*/
     }
     
 }
