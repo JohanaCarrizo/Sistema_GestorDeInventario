@@ -7,6 +7,8 @@ package app_sginventario.vistas;
 
 import app_sginventario.controlador.ComponenteControlador;
 import app_sginventario.controlador.EquipoControlador;
+import app_sginventario.controlador.PrincipalControlador;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -60,11 +62,12 @@ public class EquipoVista extends javax.swing.JFrame {
         tblEquipos = new javax.swing.JTable();
         btnImprimir = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
+        btnCancelarEdi = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(990, 533));
+        setPreferredSize(new java.awt.Dimension(1024, 800));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setText("ID");
@@ -237,7 +240,7 @@ public class EquipoVista extends javax.swing.JFrame {
                     .addComponent(btnConfirmar)
                     .addComponent(btnConfirmarEdi)
                     .addComponent(btnEliminar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         tblEquipos.setModel(new javax.swing.table.DefaultTableModel(
@@ -258,33 +261,62 @@ public class EquipoVista extends javax.swing.JFrame {
 
         btnEditar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnEditar.setText("EDITAR");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        btnCancelarEdi.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnCancelarEdi.setText("CANCELAR EDICIÓN");
+        btnCancelarEdi.setEnabled(false);
+        btnCancelarEdi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarEdiActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnCancelar.setText("CANCELAR");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnImprimir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCancelarEdi)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnCancelar)))
                 .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(btnImprimir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnImprimir)
-                    .addComponent(btnEditar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnCancelarEdi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnImprimir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnCancelar)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
-
-        btnCancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnCancelar.setText("CANCELAR");
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel4.setText("GESTOR DE EQUIPOS");
@@ -299,13 +331,11 @@ public class EquipoVista extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar)))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(132, 132, 132)
                         .addComponent(jLabel4)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,14 +343,13 @@ public class EquipoVista extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCancelar)
-                .addGap(0, 7, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -338,34 +367,53 @@ public class EquipoVista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCompActionPerformed
-        // TODO add your handling code here:
+       
+        EquipoControlador.seleccionarFilaTablaFiltroComp();
     }//GEN-LAST:event_btnAgregarCompActionPerformed
 
     private void bntQuitarCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntQuitarCompActionPerformed
-        // TODO add your handling code here:
+       
+        EquipoControlador.botonQuitar();
     }//GEN-LAST:event_bntQuitarCompActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
        
-        
+        EquipoControlador.eventoBotonConfirmar();
+        EquipoControlador.llenarTablaEquipo();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
          
         tblFiltroComp.setModel(new DefaultTableModel());
-        EquipoControlador.llenarTablaFiltroComponentes(cbxCotegorias.getSelectedItem().toString());
-        
+        EquipoControlador.llenarTablaFiltroComponentes(cbxCotegorias.getSelectedItem().toString());        
         
     }//GEN-LAST:event_btnFiltrarActionPerformed
 
     private void cbxCotegoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCotegoriasActionPerformed
-       
-        /*if(cbxCotegorias.getSelectedIndex() > -1){
-            
-            ComponenteControlador.llenarTablaFiltroComponentes(cbxCotegorias.getSelectedItem().toString());
-        
-        }*/
+      
     }//GEN-LAST:event_cbxCotegoriasActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        
+        EquipoControlador.ocultarBotonConfirmar();
+        EquipoControlador.mostrarBotonEliminarYConfEdicion();
+        EquipoControlador.ocultarBotonEditar();
+        EquipoControlador.mostrarBotonCancelarEdicion();
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnCancelarEdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarEdiActionPerformed
+        
+        EquipoControlador.mostrarBotonConfirmar();
+        EquipoControlador.ocultarBotonEliminarYConfEdicion();
+        EquipoControlador.mostrarBotonEditar();
+        EquipoControlador.ocultarBotonCancelarEdicion();
+    }//GEN-LAST:event_btnCancelarEdiActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        
+        EquipoControlador.ocultar();
+        PrincipalControlador.mostrar();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     
 
@@ -373,6 +421,7 @@ public class EquipoVista extends javax.swing.JFrame {
     private javax.swing.JButton bntQuitarComp;
     private javax.swing.JButton btnAgregarComp;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnCancelarEdi;
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnConfirmarEdi;
     private javax.swing.JButton btnEditar;
@@ -458,6 +507,46 @@ public class EquipoVista extends javax.swing.JFrame {
 
     public void setTxtNombre(JTextField txtNombre) {
         this.txtNombre = txtNombre;
+    }
+
+    public JButton getBntQuitarComp() {
+        return bntQuitarComp;
+    }
+
+    public JButton getBtnAgregarComp() {
+        return btnAgregarComp;
+    }
+
+    public JButton getBtnCancelar() {
+        return btnCancelar;
+    }
+
+    public JButton getBtnCancelarEdi() {
+        return btnCancelarEdi;
+    }
+
+    public JButton getBtnConfirmar() {
+        return btnConfirmar;
+    }
+
+    public JButton getBtnConfirmarEdi() {
+        return btnConfirmarEdi;
+    }
+
+    public JButton getBtnEditar() {
+        return btnEditar;
+    }
+
+    public JButton getBtnEliminar() {
+        return btnEliminar;
+    }
+
+    public JButton getBtnFiltrar() {
+        return btnFiltrar;
+    }
+
+    public JButton getBtnImprimir() {
+        return btnImprimir;
     }
 
     

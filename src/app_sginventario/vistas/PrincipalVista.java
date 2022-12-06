@@ -9,6 +9,7 @@ import app_sginventario.controlador.EmpleadoControlador;
 import app_sginventario.controlador.EquipoControlador;
 import app_sginventario.controlador.LoginControlador;
 import app_sginventario.controlador.PrincipalControlador;
+import app_sginventario.controlador.ProveedorControlador;
 
 /**
  *
@@ -42,6 +43,7 @@ public class PrincipalVista extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         MenuItemGestionComp = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        MenuItemListaProveedor = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         MenuItemCerrar = new javax.swing.JMenuItem();
@@ -97,11 +99,25 @@ public class PrincipalVista extends javax.swing.JFrame {
         jMenu3.setText("Componentes");
 
         MenuItemGestionComp.setText("Gestionar componentes");
+        MenuItemGestionComp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemGestionCompActionPerformed(evt);
+            }
+        });
         jMenu3.add(MenuItemGestionComp);
 
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Proveedores");
+
+        MenuItemListaProveedor.setText("Listar proveedores");
+        MenuItemListaProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemListaProveedorActionPerformed(evt);
+            }
+        });
+        jMenu4.add(MenuItemListaProveedor);
+
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Reportes");
@@ -153,6 +169,16 @@ public class PrincipalVista extends javax.swing.JFrame {
         EquipoControlador.mostrar();
     }//GEN-LAST:event_MenuItemGestionEquipoActionPerformed
 
+    private void MenuItemListaProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemListaProveedorActionPerformed
+        
+        ProveedorControlador.mostrar();
+    }//GEN-LAST:event_MenuItemListaProveedorActionPerformed
+
+    private void MenuItemGestionCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemGestionCompActionPerformed
+        
+        
+    }//GEN-LAST:event_MenuItemGestionCompActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -160,6 +186,7 @@ public class PrincipalVista extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuItemGestionComp;
     private javax.swing.JMenuItem MenuItemGestionEquipo;
     private javax.swing.JMenuItem MenuItemGestionaEmpleados;
+    private javax.swing.JMenuItem MenuItemListaProveedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

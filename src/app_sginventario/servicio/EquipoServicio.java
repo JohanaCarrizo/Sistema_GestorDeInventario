@@ -2,6 +2,7 @@ package app_sginventario.servicio;
 
 import app_sginventario.entidades.Componente;
 import app_sginventario.entidades.Equipo;
+import app_sginventario.entidades.EstadoComponente;
 import app_sginventario.entidades.HistorialDeCambio;
 import app_sginventario.entidades.TipoDepartamento;
 import app_sginventario.persistencia.DAO;
@@ -13,14 +14,23 @@ public class EquipoServicio extends DAO{
     
         Equipo equipo = new Equipo();
         
-        if(equipo.validarCantComponentes(componentes)){
+        if(equipo.validarCantComponentes(componentes) && !nombre.isEmpty()){
         
             equipo.setNombre(nombre);
             equipo.setHistoriales(historiales);
             equipo.setDepto(depto);
             equipo.setComponentes(componentes);
             
-            super.guardar(equipo);            
+            super.guardar(equipo);    
+            
+            Equipo e = buscarUltimoEquipoAgregado();
+            for (Componente componente : e.getComponentes()) {
+                
+                componente.setEquipo(e);
+                componente.setEstado(EstadoComponente.EN_USO);
+                super.editar(componente);
+            }
+            
             return true;
         
         }else{ return false; }
@@ -44,6 +54,14 @@ public class EquipoServicio extends DAO{
             componente.setEquipo(equipo);
             super.editar(componente);
         }
+    }
+    
+    public Equipo buscarUltimoEquipoAgregado(){
+    
+        conectar();
+        Equipo e = (Equipo) em.createQuery("SELECT e FROM Equipo e WHERE e.id = (SELECT MAX(e.id) FROM Equipo e)").getSingleResult();
+        desconectar();
+        return e;
     }
     
     public void asignarHistorialAEquipo(int id, List<HistorialDeCambio> historiales){
