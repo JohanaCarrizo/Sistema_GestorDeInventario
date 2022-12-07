@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Equipo implements Serializable {
@@ -28,23 +29,22 @@ public class Equipo implements Serializable {
     @OneToMany(mappedBy = "equipo")
     private List<Componente> componentes;
     
-    //@ManyToOne
-    //private Departamento depto;
+    @OneToOne
+    private Empleado empleado;
     
     @Enumerated(EnumType.STRING)
     private TipoDepartamento depto;
     
-    /*@ManyToOne
-    private Empresa empresa;*/
 
     public Equipo() {}
 
-    public Equipo(String nombre, List<HistorialDeCambio> historiales, TipoDepartamento depto, List<Componente> componentes) {
+    public Equipo(String nombre, List<HistorialDeCambio> historiales, TipoDepartamento depto, List<Componente> componentes, Empleado empleado) {
         
         this.nombre = nombre;
         this.historiales = historiales;
         this.depto = depto;
         this.componentes = componentes;
+        this.empleado = empleado;
     }
 
     public int getId() {
@@ -89,13 +89,14 @@ public class Equipo implements Serializable {
         
     }
 
-    /*public Empresa getEmpresa() {
-        return empresa;
+    public Empleado getEmpleado() {
+        return empleado;
     }
 
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }*/
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+
     
     public boolean validarCantComponentes(List<Componente> componentes){
     

@@ -1,6 +1,7 @@
 package app_sginventario.servicio;
 
 import app_sginventario.entidades.Componente;
+import app_sginventario.entidades.Empleado;
 import app_sginventario.entidades.Equipo;
 import app_sginventario.entidades.EstadoComponente;
 import app_sginventario.entidades.HistorialDeCambio;
@@ -9,7 +10,7 @@ import app_sginventario.persistencia.DAO;
 import java.util.List;
 
 public class EquipoServicio extends DAO{
-    
+        
     public boolean guardarEquipo(String nombre, List<HistorialDeCambio> historiales, TipoDepartamento depto, List<Componente> componentes){
     
         Equipo equipo = new Equipo();
@@ -69,6 +70,29 @@ public class EquipoServicio extends DAO{
         Equipo equipo = buscarEquipo(id); 
         equipo.setHistoriales(historiales);
         super.editar(equipo);
+    }
+    
+    public List buscarEquipoEntre(){
+    
+        conectar();
+        List<Equipo> lista = em.createQuery("SELECT e FROM Equipo e WHERE e.id BETWEEN 2 AND 4").getResultList();
+        desconectar();
+        return lista;
+    }
+    
+    public Equipo buscarEquipoConEmpleado(int idEmpleado){
+    
+        conectar();
+        Equipo equipo = (Equipo) em.createQuery("SELECT e FROM Equipo e WHERE e.empleado.id LIKE :idEmpleado").setParameter("idEmpleado", idEmpleado).getSingleResult();
+        desconectar();
+        return equipo;        
+    }
+    
+    public void asignarEmpleadoAEquipo(int idEquipo, Empleado empleado){
+    
+        Equipo e = buscarEquipo(idEquipo);
+        e.setEmpleado(empleado);
+        super.editar(e);
     }
 
     public Equipo buscarEquipo(int id) {

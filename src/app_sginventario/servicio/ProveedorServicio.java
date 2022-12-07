@@ -20,4 +20,25 @@ public class ProveedorServicio extends DAO{
         desconectar();
         return proveedores;
     }
+    
+    public Proveedor buscarProveedor(int id){
+    
+        conectar();
+        Proveedor prov = em.find(Proveedor.class, id);
+        desconectar();
+        return prov;
+    }
+    
+    public Proveedor buscarProveedorPorNombre(String nombreP){
+    
+        List<Proveedor> lista = listarProveedores();
+        for (Proveedor proveedor : lista) {
+            
+            if(proveedor.getNombre().equals(nombreP)){
+            
+                return proveedor;
+            }            
+        }
+        return null;
+    }
 }

@@ -5,11 +5,13 @@
  */
 package app_sginventario.vistas;
 
+import app_sginventario.controlador.ComponenteControlador;
 import app_sginventario.controlador.EmpleadoControlador;
 import app_sginventario.controlador.EquipoControlador;
 import app_sginventario.controlador.LoginControlador;
 import app_sginventario.controlador.PrincipalControlador;
 import app_sginventario.controlador.ProveedorControlador;
+import app_sginventario.controlador.ReporteControlador;
 
 /**
  *
@@ -44,7 +46,8 @@ public class PrincipalVista extends javax.swing.JFrame {
         MenuItemGestionComp = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         MenuItemListaProveedor = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        MenuReportes = new javax.swing.JMenu();
+        MenuItemReportes = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         MenuItemCerrar = new javax.swing.JMenuItem();
 
@@ -67,13 +70,16 @@ public class PrincipalVista extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(209, 209, 209)
                 .addComponent(jLabel1)
-                .addContainerGap(268, Short.MAX_VALUE))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
 
-        jMenuBar1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jMenuBar1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
-        jMenu1.setText("Empleados");
+        jMenu1.setText("Empleado");
+        jMenu1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
+        MenuItemGestionaEmpleados.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         MenuItemGestionaEmpleados.setText("Gestionar empleados");
         MenuItemGestionaEmpleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,8 +90,10 @@ public class PrincipalVista extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Equipos");
+        jMenu2.setText("Equipo");
+        jMenu2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
+        MenuItemGestionEquipo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         MenuItemGestionEquipo.setText("Gestionar equipos");
         MenuItemGestionEquipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,8 +104,10 @@ public class PrincipalVista extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Componentes");
+        jMenu3.setText("Componente");
+        jMenu3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
+        MenuItemGestionComp.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         MenuItemGestionComp.setText("Gestionar componentes");
         MenuItemGestionComp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,8 +118,10 @@ public class PrincipalVista extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setText("Proveedores");
+        jMenu4.setText("Proveedor");
+        jMenu4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
+        MenuItemListaProveedor.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         MenuItemListaProveedor.setText("Listar proveedores");
         MenuItemListaProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,11 +132,24 @@ public class PrincipalVista extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu5.setText("Reportes");
-        jMenuBar1.add(jMenu5);
+        MenuReportes.setText("Reporte");
+        MenuReportes.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        MenuItemReportes.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        MenuItemReportes.setText("Reportes");
+        MenuItemReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemReportesActionPerformed(evt);
+            }
+        });
+        MenuReportes.add(MenuItemReportes);
+
+        jMenuBar1.add(MenuReportes);
 
         jMenu6.setText("Salir");
+        jMenu6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
+        MenuItemCerrar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         MenuItemCerrar.setText("Cerrar sesión");
         MenuItemCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,8 +201,15 @@ public class PrincipalVista extends javax.swing.JFrame {
 
     private void MenuItemGestionCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemGestionCompActionPerformed
         
-        
+        PrincipalControlador.ocultar();
+        ComponenteControlador.mostrar();
     }//GEN-LAST:event_MenuItemGestionCompActionPerformed
+
+    private void MenuItemReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemReportesActionPerformed
+        
+        ReporteControlador.mostrar();
+        PrincipalControlador.ocultar();
+    }//GEN-LAST:event_MenuItemReportesActionPerformed
 
     
 
@@ -187,12 +219,13 @@ public class PrincipalVista extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuItemGestionEquipo;
     private javax.swing.JMenuItem MenuItemGestionaEmpleados;
     private javax.swing.JMenuItem MenuItemListaProveedor;
+    private javax.swing.JMenuItem MenuItemReportes;
+    private javax.swing.JMenu MenuReportes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
