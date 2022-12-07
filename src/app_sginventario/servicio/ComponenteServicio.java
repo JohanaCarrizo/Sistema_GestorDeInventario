@@ -4,13 +4,14 @@ import app_sginventario.entidades.Categoria;
 import app_sginventario.entidades.Componente;
 import app_sginventario.entidades.Equipo;
 import app_sginventario.entidades.EstadoComponente;
+import app_sginventario.entidades.Proveedor;
 import app_sginventario.persistencia.DAO;
 import java.util.Date;
 import java.util.List;
 
 public class ComponenteServicio extends DAO{
     
-    public void guardarComponente(String descripcion, String garantia, String marca, Categoria categoria, Equipo equipo){
+    public void guardarComponente(String descripcion, String garantia, String marca, Categoria categoria, Equipo equipo, Proveedor proveedor){
     
         Componente componente = new Componente();
         
@@ -20,6 +21,7 @@ public class ComponenteServicio extends DAO{
         componente.setCategoria(categoria);
         componente.setEstado(EstadoComponente.EN_ALMACEN);
         componente.setEquipo(equipo);
+        componente.setProveedor(proveedor);
         
         super.guardar(componente);
         
@@ -33,6 +35,14 @@ public class ComponenteServicio extends DAO{
             super.editar(componente);
         }   
         
+    }
+    
+    public void guardarModificacion(List<Componente> componentes) {
+
+        for (Componente componente : componentes) {
+            
+            super.editar(componente);
+        }
     }
     
     public List listarComponentes(){
@@ -78,7 +88,7 @@ public class ComponenteServicio extends DAO{
     
         conectar();
         em.getTransaction().begin();
-        List<Componente> lista = em.createQuery("SELECT c FROM Componente c WHERE c.id BETWEEN 10 AND 58").getResultList();
+        List<Componente> lista = em.createQuery("SELECT c FROM Componente c WHERE c.id BETWEEN 61 AND 63").getResultList();
         desconectar();
         return lista;
     }

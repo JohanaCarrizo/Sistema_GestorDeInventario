@@ -32,9 +32,12 @@ public class HistorialDeCambio implements Serializable {
     @Enumerated(EnumType.STRING)
     private TipoDeCambio tipoCambio;
 
-    public HistorialDeCambio() {}
+    public HistorialDeCambio() {
+    
+        this.fecha_cambio = new Date();
+    }
 
-    public HistorialDeCambio(String descripcion, TipoDeCambio tipoCambio,Equipo equipo) {
+    public HistorialDeCambio(String descripcion, TipoDeCambio tipoCambio, Equipo equipo) {
        
         this.descripcion = descripcion;
         this.fecha_cambio = new Date();

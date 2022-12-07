@@ -15,7 +15,8 @@ public class Proveedor implements Serializable {
     private int id;
     
     @Basic
-    private String nombre;    
+    private String nombre;   
+    
 
     public Proveedor() {}
 

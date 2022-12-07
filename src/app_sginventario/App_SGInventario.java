@@ -9,13 +9,16 @@ import app_sginventario.entidades.Equipo;
 import app_sginventario.entidades.EstadoComponente;
 import app_sginventario.entidades.HistorialDeCambio;
 import app_sginventario.entidades.Rol;
+import app_sginventario.entidades.TipoDeCambio;
 import app_sginventario.entidades.TipoDepartamento;
 import app_sginventario.entidades.Usuario;
 import app_sginventario.servicio.ComponenteServicio;
 import app_sginventario.servicio.EmpleadoServicio;
 import app_sginventario.servicio.EmpresaServicio;
 import app_sginventario.servicio.EquipoServicio;
+import app_sginventario.servicio.HistorialDeCambioServicio;
 import app_sginventario.servicio.ProveedorServicio;
+import app_sginventario.servicio.ReporteServicio;
 import app_sginventario.servicio.UsuarioServicio;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,21 +34,32 @@ public class App_SGInventario {
         ComponenteServicio compoService = new ComponenteServicio();
         EquipoServicio equipoService = new EquipoServicio();
         ProveedorServicio proveedorService = new ProveedorServicio();
+        ReporteServicio reporteService = new ReporteServicio();
+        HistorialDeCambioServicio historialService = new HistorialDeCambioServicio();
         
         LoginControlador.mostrar();
         
         
-//        List<Componente> lista = compoService.filtrarPorCategoria(Categoria.monitor);
         
+        //equipoService.asignarEmpleadoAEquipo(3, empleadoService.buscarEmpleado(9));
+        
+        //List<Equipo> lista = equipoService.buscarEquipoEntre();
+        //Componente comp = compoService.buscarComponente(1);
+        
+        //comp.setProveedor(proveedorService.buscarProveedor(13));
+        
+        //compoService.guardarModificacion(comp);
         
         /*Categoria cat = compoService.retornarCategoria("memoria_ram");
         List<Componente> lista = compoService.filtrarPorCategoria(cat);*/
         
-//        for (Componente componente : lista) {
+//        for (Equipo equipo : lista) {
 //            
-//            System.out.println(componente);
+//            System.out.println(equipo);
 //            
 //        }
+//        
+//        compoService.guardarModificacion(lista);
         
         //userServ.guardarUsuario("Lmessi", "1234");
         
@@ -158,7 +172,8 @@ public class App_SGInventario {
         
         //List<HistorialDeCambio> listaHistorial = new ArrayList();
         
-        //listaHistorial.add(new HistorialDeCambio("Cambio de memoria Ram de 4gb por una de 8gb", equipoService.buscarEquipo(3)));
+        //HistorialDeCambio h = new HistorialDeCambio();
+       // historialService.guardarHistorial("Cambio de Disco Rigido de 1Tb por una SSD de 1Tb", TipoDeCambio.ACTUALIZACION, equipoService.buscarEquipo(3));
         
         //equipoService.asignarHistorialAEquipo(3, listaHistorial);
         

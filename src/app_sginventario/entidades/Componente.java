@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -39,6 +40,9 @@ public class Componente implements Serializable {
     @ManyToOne
     private Equipo equipo;
     
+    @OneToOne
+    private Proveedor proveedor;
+    
     
     public Componente() {
     
@@ -46,7 +50,7 @@ public class Componente implements Serializable {
         this.estado = EstadoComponente.EN_ALMACEN;
     }
 
-    public Componente(String descripcion, String garantia, String marca, Categoria categoria, Equipo equipo) {
+    public Componente(String descripcion, String garantia, String marca, Categoria categoria, Equipo equipo, Proveedor proveedor) {
        
         this.descripcion = descripcion;
         this.garantia = garantia;
@@ -55,6 +59,7 @@ public class Componente implements Serializable {
         this.categoria = categoria;
         this.estado = EstadoComponente.EN_ALMACEN;
         this.equipo = equipo;
+        this.proveedor = proveedor;
     }
 
     public int getId() {
@@ -119,6 +124,14 @@ public class Componente implements Serializable {
 
     public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
+    }
+
+    public Proveedor getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
     }
     
     

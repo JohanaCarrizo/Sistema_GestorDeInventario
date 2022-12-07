@@ -1,6 +1,7 @@
 package app_sginventario.controlador;
 
 import app_sginventario.entidades.Empleado;
+import app_sginventario.entidades.Rol;
 import app_sginventario.entidades.Usuario;
 import app_sginventario.servicio.EmpleadoServicio;
 import app_sginventario.servicio.UsuarioServicio;
@@ -25,26 +26,53 @@ public class LoginControlador extends JFrame{
         loginView.getTxtPass().setText("");
     }
     
-    public static void eventoIniciarSesion(){
-    
+    public static void eventoIniciarSesion() {
+
         String usuario = loginView.getTxtUsuario().getText();
         String pass = loginView.getTxtPass().getText();
-        
-        Usuario user = userService.validarUsuario(pass);
-        String nombre = user.getNombre_usuario();
-        if( user != null &&  nombre.equals(usuario)){
-        
-            Empleado empleado = employeeService.buscarEmpleadoPorUsuario(user);
-            JOptionPane.showMessageDialog(null, "¡Bienvenido, "+empleado.getNombre()+" "+empleado.getApellido());
-            ocultar();
+
+        try {
+            
+        if(usuario.isEmpty() || pass.isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Debe completar todos los campos");
             limpiarCamposDeTexto();
-            PrincipalControlador.mostrar();
         
         }else{
-        
-            JOptionPane.showMessageDialog(null, "Acceso denegado. Por favor intente nuevamente");
+
+        Usuario user = userService.validarUsuario(pass);
+        String nombre = user.getNombre_usuario();
+        Empleado empleado = employeeService.buscarEmpleadoPorUsuario(user);
+
+            if (user == null) {
+
+                JOptionPane.showMessageDialog(null, "El ususario ingresado no existe. Intente nuevamente");
+                limpiarCamposDeTexto();
+
+            } else if (nombre.equals(usuario) && empleado.getRol() == Rol.ADMINISTRADOR) {
+
+                JOptionPane.showMessageDialog(null, "¡Bienvenido, " + empleado.getNombre() + " " + empleado.getApellido());
+                ocultar();
+                limpiarCamposDeTexto();
+                ReporteControlador.pasarEmpleadoAReporte(   empleado);
+                PrincipalControlador.mostrar();
+
+            } else if (nombre.equals(usuario) && empleado.getRol() == Rol.OPERADOR) {
+
+                JOptionPane.showMessageDialog(null, "¡Bienvenido, " + empleado.getNombre() + " " + empleado.getApellido());
+                ocultar();
+                limpiarCamposDeTexto();
+                OperadorControlador.pasarEmpleado(empleado);
+                OperadorControlador.mostrar();
+            }
+        }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Sistema fuera de servicio");
             limpiarCamposDeTexto();
-        }    
+            throw e;
+        }
     }
     
 }
